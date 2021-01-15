@@ -1,22 +1,20 @@
 // write your custom hook here to control your checkout form
 import { useState } from 'react';
 
-const useForm = (key, initialValue) => {
-    const [storedValue, setStoredValue] = useState((initialValue) => {
-        //function needs to check if we have a value in local storage already
-        if (window.localStorage.getItem(key)) {
-            return JSON.parse(window.localStorage.getItem(key));
-        }
-        window.localStorage.setItem(key, JSON.stringify(initialValue));
-        return initialValue;
-    });
+const useForm = (initialValue) => {
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [values, setValues] = useState(initialValue);
 
-    //custom setter function that updates state and sets the new value to localStorage
-    const setValueToLocal = (key, newValue) => {
-        window.localStorage.setItem(JSON.stringify(key, newValue));
-        setStoredValue(newValue);
-    }
-    return [storedValue, setValueToLocal];
+    const handleChanges = (e) => {
+        setValues({ ...values, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setShowSuccessMessage(true);
+    };
+
+    return([showSuccessMessage, values, handleChanges, handleSubmit]);
 }
 
 export default useForm;
