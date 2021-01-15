@@ -30,13 +30,20 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain how to build stateful class components.
 
+- In order to build stateful class components, you need to wrap an axios call or fetch request inside of componentDidMount(), as it acts like useEffect() in functional components, and whenever updating state you use this.setState(), instead of the useState React hook.
+
 2. Describe the different phases of the component lifecycle.
 
+- Start with Mounting Phase, with constructor function initializing the app's state, the app renders and then moves to the commit phase where finally componentDidMount() gets called. Then it goes into an updating phase, where a change in state causes a rerender and then componentDidUpdate() gets called. Finally, after all this the Unmounting phase happens once the specific component is finished via componentWillUnmount()
+
 3. Demonstrate an understanding of class component lifecycle methods.
+   -See answer above
 
 4. Define stateful logic.
+   -Any logic that has to do with changing/updating state.
 
 5. Describe how to test a React component with React Testing Library.
+   -Act, Assign, Assert. First you set up your basic test() that checks if there are any errors with a component mounting(Act), then you assign values to certain expected outputs via userEvent()(Assign), and then you check to see if those expected outputs end up being in the document via expect().toBeInTheDocument(), and if they are then your tests pass and your app has the expected functionality for the user's experience.(Assert).
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
